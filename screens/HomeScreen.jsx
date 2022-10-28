@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Image, Platform, StatusBar, View, Text } from 'react-native';
 import React, { useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import colours from '../config/colours';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -56,10 +57,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   sloganText: {
-    color: '#555559',
+    color: colours.primary,
   },
   locationText: {
     fontWeight: 'bold',
-    color: '#555559',
+    color: colours.primary,
   },
 });
