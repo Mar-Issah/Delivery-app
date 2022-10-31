@@ -1,17 +1,19 @@
-import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
+import colours from '../config/colours';
 
-const CategoryCard = ({ imgUrl }) => {
+const CategoryCard = ({ imgUrl, title }) => {
   return (
     //when press opacity becomes lighter
-    <TouchableOpacity>
+    <TouchableOpacity style={styles.cardContainer}>
       <Image
         style={styles.image}
-        resizeMode='contain'
+        // resizeMode='cover'
         source={{
-          uri: { imgUrl },
+          uri: imgUrl,
         }}
       />
+      <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -19,8 +21,19 @@ const CategoryCard = ({ imgUrl }) => {
 export default CategoryCard;
 
 const styles = StyleSheet.create({
+  cardContainer: {
+    position: 'relative',
+    margin: 5,
+  },
   image: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
+  },
+  title: {
+    position: 'absolute',
+    bottom: '3%',
+    left: 3,
+    fontWeight: 'bold',
+    color: colours.white,
   },
 });

@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Categories from '../components/Categories';
-//const myIcon = <Icon name='rocket' size={30} color='#900' />;
 
 const HomeScreen = () => {
   const navigation = useNavigation();
