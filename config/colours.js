@@ -1,4 +1,6 @@
 export default {
   primary: '#555559',
-  secondary: '#fff',
+  offWhite: '#e6ecf7',
+  iconBlue: '#282ff7',
+  white: '#fff',
 };

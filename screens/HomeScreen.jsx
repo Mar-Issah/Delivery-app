@@ -1,7 +1,9 @@
-import { SafeAreaView, StyleSheet, Image, Platform, StatusBar, View, Text } from 'react-native';
+import { SafeAreaView, StyleSheet, Image, Platform, StatusBar, View, Text, TextInput } from 'react-native';
 import React, { useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
+import Icon from 'react-native-vector-icons/FontAwesome';
+//const myIcon = <Icon name='rocket' size={30} color='#900' />;
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -17,17 +19,31 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.AndroidSafeArea}>
       {/* custon header */}
       <View style={styles.headerContainer}>
-        <Image
-          style={styles.logo}
-          resizeMode='contain'
-          source={{
-            uri: 'https://res.cloudinary.com/dytnpjxrd/image/upload/v1666980804/Delivery%20app/logo-removebg-preview_jfattz.png',
-          }}
-        />
-        <View style={styles.headerTextContainer}>
-          <Text style={styles.sloganText}>Fast Delivery!</Text>
-          <Text style={styles.locationText}>Where are you?</Text>
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.logo}
+            resizeMode='contain'
+            source={{
+              uri: 'https://res.cloudinary.com/dytnpjxrd/image/upload/v1666980804/Delivery%20app/logo-removebg-preview_jfattz.png',
+            }}
+          />
+          <View style={styles.headerTextContainer}>
+            <Text style={styles.sloganText}>Fast Delivery!</Text>
+            <Text style={styles.locationText}>
+              Where are you?
+              <Icon name='chevron-down' size={10} color={colours.primary} />
+            </Text>
+          </View>
         </View>
+        <Icon name='user' size={20} color={colours.iconBlue} />
+      </View>
+      {/* SEARCH BAR */}
+      <View style={styles.inputContainer}>
+        <View style={styles.searchContainer}>
+          <Icon name='search' size={15} color={colours.primary} />
+          <TextInput placeholder='Restuarants and cuisines' />
+        </View>
+        <Icon name='sliders' size={20} color={colours.iconBlue} />
       </View>
     </SafeAreaView>
   );
@@ -38,18 +54,25 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   //for android safe area view doent work
   AndroidSafeArea: {
-    flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colours.offWhite,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    paddingHorizontal: 15,
+    paddingBottom: 8,
   },
   logo: {
-    width: 50,
-    height: 50,
-    borderColor: '#282ff7',
+    width: 30,
+    height: 30,
+    borderColor: colours.iconBlue,
     borderWidth: 1,
     borderRadius: 75,
   },
   headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: 8,
+  },
+  imageContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -62,5 +85,18 @@ const styles = StyleSheet.create({
   locationText: {
     fontWeight: 'bold',
     color: colours.primary,
+    marginRight: 5,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    backgroundColor: colours.white,
+    width: '90%',
+    padding: 3,
+    alignItems: 'center',
   },
 });
