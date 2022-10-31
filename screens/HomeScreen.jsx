@@ -1,8 +1,9 @@
-import { SafeAreaView, StyleSheet, Image, Platform, StatusBar, View, Text, TextInput } from 'react-native';
+import { SafeAreaView, StyleSheet, Image, Platform, StatusBar, View, Text, TextInput, ScrollView } from 'react-native';
 import React, { useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Categories from '../components/categories';
 //const myIcon = <Icon name='rocket' size={30} color='#900' />;
 
 const HomeScreen = () => {
@@ -45,6 +46,12 @@ const HomeScreen = () => {
         </View>
         <Icon name='sliders' size={20} color={colours.iconBlue} />
       </View>
+      {/* BODY/SCROLLVIEW FOR CATEGORIES */}
+      <ScrollView>
+        {/* categories */}
+        <Categories />
+        {/* featured */}
+      </ScrollView>
     </SafeAreaView>
   );
 };
