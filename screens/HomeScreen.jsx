@@ -3,7 +3,7 @@ import React, { useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Categories from '../components/categories';
+import Categories from '../components/Categories';
 //const myIcon = <Icon name='rocket' size={30} color='#900' />;
 
 const HomeScreen = () => {
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: colours.offWhite,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     paddingHorizontal: 15,
-    paddingBottom: 8,
   },
   logo: {
     width: 30,
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingBottom: 8,
+    paddingVertical: 8,
   },
   imageContainer: {
     flexDirection: 'row',
