@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Categories from '../components/Categories';
+import FeaturedRow from '../components/FeaturedRow';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -49,7 +50,12 @@ const HomeScreen = () => {
       <ScrollView>
         {/* categories */}
         <Categories />
+        {/* Offer near you */}
+        <FeaturedRow id='1' title='title' desc='description' />
+        {/* tasty discounts */}
+        <FeaturedRow id='2' title='title' desc='description' />
         {/* featured */}
+        <FeaturedRow id='3' title='title' desc='description' />
       </ScrollView>
     </SafeAreaView>
   );
