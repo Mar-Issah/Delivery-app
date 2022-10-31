@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   image: {
     width: 80,
     height: 80,
+    borderRadius: 3,
   },
   title: {
     position: 'absolute',
