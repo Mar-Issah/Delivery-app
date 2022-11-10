@@ -1,5 +1,5 @@
 {
-  "name": "delivery",
+  "name": "deliveryserver",
   "private": true,
   "version": "1.0.0",
   "description": "Delivery mobile application built with react native",
