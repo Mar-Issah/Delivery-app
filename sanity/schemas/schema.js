@@ -20,9 +20,9 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    dish,
-    featured,
-    category,
     restaurant,
+    dish,
+    category,
+    featured,
   ]),
 });
