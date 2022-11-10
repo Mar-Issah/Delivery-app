@@ -5,8 +5,10 @@ import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Categories from '../components/Categories';
 import FeaturedRow from '../components/FeaturedRow';
+import sanityClient from '/MARSIYA/PROGRAMMING/PORTFORLIO/ALL NOTES/JAVASCRIPT/REACT NATIVE/delivery/sanity/sanity';
 
 const HomeScreen = () => {
+  const [featuredCategories, setfeaturedCategories] = useState([]);
   const navigation = useNavigation();
 
   //hide the header on screen layout show
@@ -16,6 +18,22 @@ const HomeScreen = () => {
       headerShown: false,
     });
   }, []);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == 'featured']{
+  ...,restaurants[]->{
+    ...,dishes[]->,
+  }
+}`
+      )
+      .then((data) => {
+        setfeaturedCategories(data);
+      });
+  }, []);
+
+  console.log(featuredCategories);
   return (
     <SafeAreaView style={styles.AndroidSafeArea}>
       {/* custon header */}
