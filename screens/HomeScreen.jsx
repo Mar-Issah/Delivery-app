@@ -1,5 +1,5 @@
 import { SafeAreaView, StyleSheet, Image, Platform, StatusBar, View, Text, TextInput, ScrollView } from 'react-native';
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
