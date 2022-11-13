@@ -11,7 +11,7 @@ const client = sanityClient({
 
 //for the image url generator
 //below is a helper function we will be using to build our url
-const builder = imageUrlBuilder(myConfiguredSanityClient);
+const builder = imageUrlBuilder(client);
 
 export const urlFor = (source) => {
   return builder.image(source);
