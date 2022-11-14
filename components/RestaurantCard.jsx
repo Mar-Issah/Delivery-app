@@ -3,21 +3,17 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import colours from '../config/colours';
 import { urlFor } from '../sanity/sanity';
+import { useNavigation } from '@react-navigation/native';
 
-const RestaurantCard = ({
-  id,
-  imgUrl,
-  title,
-  rating,
-  genre,
-  address,
-  short_desc,
-  dishes,
-  long,
-  lat,
-}) => {
+const RestaurantCard = ({ id, imgUrl, title, rating, genre, address, short_desc, dishes, long, lat }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity
+      style={styles.cardContainer}
+      onPress={() =>
+        navigation.navigate('Restaurant', { id, imgUrl, title, rating, genre, address, short_desc, dishes, long, lat })
+      }
+    >
       <Image
         style={styles.image}
         resizeMode='cover'
