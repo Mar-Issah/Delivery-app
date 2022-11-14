@@ -24,7 +24,7 @@ const Categories = () => {
         <CategoryCard
           key={category._id}
           title={category.name}
-          imgUrl='https://res.cloudinary.com/dytnpjxrd/image/upload/v1666549301/1608236387-goalfea_efirhh.jpg'
+          imgUrl={category.image}
         />
       ))}
     </ScrollView>

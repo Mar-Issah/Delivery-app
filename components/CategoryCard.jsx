@@ -1,6 +1,7 @@
 import { StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import colours from '../config/colours';
+import { urlFor } from '../sanity/sanity';
 
 const CategoryCard = ({ imgUrl, title }) => {
   return (
@@ -10,7 +11,7 @@ const CategoryCard = ({ imgUrl, title }) => {
         style={styles.image}
         // resizeMode='cover'
         source={{
-          uri: imgUrl,
+          uri: urlFor(imgUrl).url(),
         }}
       />
       <Text style={styles.title}>{title}</Text>
