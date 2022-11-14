@@ -41,7 +41,22 @@ const FeaturedRow = ({ id, title, desc }) => {
         showsHorizontalScrollIndicator={true}
         contentContainerStyle={styles.contentContainer}
       >
-        <RestaurantCard
+        {restaurants?.map((restaurant) => (
+          <RestaurantCard
+            id={restaurant._id}
+            key={restaurant._id}
+            imgUrl={restaurant.image}
+            title={restaurant.name}
+            rating={restaurant.rating}
+            genre={restaurant?.type?.name}
+            address={restaurant.address}
+            short_desc={restaurant.short_description}
+            dishes={restaurant.dishes}
+            long={restaurant.lon}
+            lat={restaurant.lat}
+          />
+        ))}
+        {/* <RestaurantCard
           id={1}
           imgUrl='https://res.cloudinary.com/dytnpjxrd/image/upload/v1605909373/samples/Japan_bhwugz.jpg'
           title='Marsiya Rest'
@@ -52,7 +67,7 @@ const FeaturedRow = ({ id, title, desc }) => {
           dishes={[]}
           long={0.23}
           lat={0.45}
-        />
+        /> */}
       </ScrollView>
     </View>
   );
