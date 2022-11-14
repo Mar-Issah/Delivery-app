@@ -11,7 +11,7 @@ const Categories = () => {
       setCategories(data);
     });
   }, []);
-  console.log(categories);
+  // console.log(categories);
   return (
     // horizonatal scrollview
     //no arrow
