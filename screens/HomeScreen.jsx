@@ -1,4 +1,14 @@
-import { SafeAreaView, StyleSheet, Image, Platform, StatusBar, View, Text, TextInput, ScrollView } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Image,
+  Platform,
+  StatusBar,
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+} from 'react-native';
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
@@ -68,14 +78,15 @@ const HomeScreen = () => {
       <ScrollView contentContainerStyle={{ paddingBottom: 300 }}>
         {/* categories */}
         <Categories />
-        {/* Offer near you */}
-        <FeaturedRow id='1' title='Offers near you!' desc='description' />
-        {/* tasty discounts */}
-        <FeaturedRow id='2' title='Tasty discounts' desc='description' />
-        {/* featured */}
-        <FeaturedRow id='3' title='Featured' desc='description' />
+        {featuredCategories?.map((category) => (
+          <FeaturedRow
+            id={category._id}
+            key={category._id}
+            title={category.name}
+            desc={category.short_description}
+          />
+        ))}
       </ScrollView>
-      1
     </SafeAreaView>
   );
 };

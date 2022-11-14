@@ -12,7 +12,11 @@ const FeaturedRow = ({ title, desc }) => {
         <Icon name='arrow-right' size={15} color={colours.iconBlue} />
       </View>
       <Text>{desc}</Text>
-      <ScrollView horizontal showsHorizontalScrollIndicator={true} contentContainerStyle={styles.contentContainer}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={true}
+        contentContainerStyle={styles.contentContainer}
+      >
         <RestaurantCard
           id={1}
           imgUrl='https://res.cloudinary.com/dytnpjxrd/image/upload/v1605909373/samples/Japan_bhwugz.jpg'
