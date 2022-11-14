@@ -1,10 +1,34 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RestaurantCard from './RestaurantCard';
+import sanityClient from '../sanity/sanity';
 
-const FeaturedRow = ({ title, desc }) => {
+const FeaturedRow = ({ id, title, desc }) => {
+  const [restaurants, setRestaurants] = useState([]);
+  //now we are going into the featured data and getting the ids of the restaurants
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == 'featured' && _id == $id]{
+  					...,
+						restaurants[]->{
+   					 ...,
+						 dishes[]->,
+						 type->{
+							name
+						 }
+  					}
+					}[0]`,
+        { id }
+      )
+      .then((data) => {
+        setRestaurants(data.restaurants);
+      });
+  }, []);
+
+  console.log(restaurants);
   return (
     <View>
       <View style={styles.titleContainer}>
