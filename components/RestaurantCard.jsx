@@ -20,7 +20,7 @@ const RestaurantCard = ({
     <TouchableOpacity style={styles.cardContainer}>
       <Image
         style={styles.image}
-        // resizeMode='cover'
+        resizeMode='cover'
         source={{
           uri: urlFor(imgUrl).url(),
         }}
@@ -49,10 +49,11 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: colours.white,
     borderRadius: 3,
+    marginRight: 7,
   },
   image: {
-    width: 170,
-    height: 100,
+    width: 190,
+    height: 110,
     borderTopRightRadius: 3,
     borderTopLeftRadius: 3,
   },

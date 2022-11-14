@@ -28,7 +28,7 @@ const FeaturedRow = ({ id, title, desc }) => {
       });
   }, []);
 
-  console.log(restaurants);
+  // console.log(restaurants);
   return (
     <View>
       <View style={styles.titleContainer}>
@@ -38,7 +38,7 @@ const FeaturedRow = ({ id, title, desc }) => {
       <Text>{desc}</Text>
       <ScrollView
         horizontal
-        showsHorizontalScrollIndicator={true}
+        showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.contentContainer}
       >
         {restaurants?.map((restaurant) => (

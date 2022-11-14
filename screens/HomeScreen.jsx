@@ -43,7 +43,7 @@ const HomeScreen = () => {
       });
   }, []);
 
-  console.log(featuredCategories);
+  //console.log(featuredCategories);
   return (
     <SafeAreaView style={styles.AndroidSafeArea}>
       {/* custon header */}
