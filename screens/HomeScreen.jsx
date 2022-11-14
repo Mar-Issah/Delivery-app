@@ -23,10 +23,10 @@ const HomeScreen = () => {
     sanityClient
       .fetch(
         `*[_type == 'featured']{
-  ...,restaurants[]->{
-    ...,dishes[]->,
-  }
-}`
+  					...,restaurants[]->{
+   					 ...,dishes[]->,
+  					}
+					}`
       )
       .then((data) => {
         setfeaturedCategories(data);
@@ -65,7 +65,7 @@ const HomeScreen = () => {
         <Icon name='sliders' size={20} color={colours.iconBlue} />
       </View>
       {/* BODY/SCROLLVIEW FOR CATEGORIES */}
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ paddingBottom: 300 }}>
         {/* categories */}
         <Categories />
         {/* Offer near you */}
@@ -75,6 +75,7 @@ const HomeScreen = () => {
         {/* featured */}
         <FeaturedRow id='3' title='Featured' desc='description' />
       </ScrollView>
+      1
     </SafeAreaView>
   );
 };
