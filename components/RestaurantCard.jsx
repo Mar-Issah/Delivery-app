@@ -2,15 +2,27 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import colours from '../config/colours';
+import { urlFor } from '../sanity/sanity';
 
-const RestaurantCard = ({ id, imgUrl, title, rating, genre, address, short_desc, dishes, long, lat }) => {
+const RestaurantCard = ({
+  id,
+  imgUrl,
+  title,
+  rating,
+  genre,
+  address,
+  short_desc,
+  dishes,
+  long,
+  lat,
+}) => {
   return (
     <TouchableOpacity style={styles.cardContainer}>
       <Image
         style={styles.image}
         // resizeMode='cover'
         source={{
-          uri: imgUrl,
+          uri: urlFor(imgUrl).url(),
         }}
       />
       <View style={styles.contentContainer}>
