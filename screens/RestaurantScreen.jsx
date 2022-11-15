@@ -4,7 +4,7 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
 import { urlFor } from '../sanity/sanity';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import DishRow from '../components/DishRow';
+import Dish from '../components/Dish';
 
 const RestaurantScreen = () => {
   const {
@@ -12,6 +12,7 @@ const RestaurantScreen = () => {
   } = useRoute();
 
   const navigation = useNavigation();
+  console.log(dishes);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -64,7 +65,14 @@ const RestaurantScreen = () => {
         <Text style={styles.menuHeading}>Menu</Text>
         {/* Dishes below the menu */}
         {dishes.map((dish) => (
-          <DishRow />
+          <Dish
+            id={dish._id}
+            key={dish._id}
+            name={dish.name}
+            image={dish.image}
+            description={dish.short_description}
+            price={dish.price}
+          />
         ))}
       </View>
     </ScrollView>
