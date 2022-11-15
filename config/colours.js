@@ -5,4 +5,5 @@ export default {
   white: '#fff',
   star: 'gold',
   loaction: '#EA4335',
+  turquoise: '#AFE4DE',
 };
