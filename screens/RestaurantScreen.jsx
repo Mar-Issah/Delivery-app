@@ -4,6 +4,7 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
 import { urlFor } from '../sanity/sanity';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import DishRow from '../components/DishRow';
 
 const RestaurantScreen = () => {
   const {
@@ -33,7 +34,7 @@ const RestaurantScreen = () => {
       </View>
       <View style={{ backgroundColor: colours.white }}>
         <View style={{ padding: 5 }}>
-          <Text style={styles.restaurantName}>{title}</Text>
+          <Text style={styles.heading}>{title}</Text>
           <View style={styles.flexContainer}>
             <View style={styles.flexContainer}>
               <Icon name='star' size={15} color={colours.star} />
@@ -49,7 +50,7 @@ const RestaurantScreen = () => {
           </View>
           <Text style={styles.normalText}>{short_desc}</Text>
           <TouchableOpacity style={styles.allegyContainer}>
-            <View style={styles.flexContainer}>
+            <View style={{ flexDirection: 'row' }}>
               <View style={styles.iconContainer}>
                 <Icon name='question' size={10} color={colours.primary} style={styles.arrow} />
               </View>
@@ -58,6 +59,13 @@ const RestaurantScreen = () => {
             <Icon name='chevron-right' size={10} color={colours.iconBlue} />
           </TouchableOpacity>
         </View>
+      </View>
+      <View>
+        <Text style={styles.menuHeading}>Menu</Text>
+        {/* Dishes below the menu */}
+        {dishes.map((dish) => (
+          <DishRow />
+        ))}
       </View>
     </ScrollView>
   );
@@ -87,8 +95,14 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     padding: 6,
   },
-  restaurantName: {
+  heading: {
     fontSize: 20,
+    fontWeight: 'bold',
+    color: colours.primary,
+  },
+  menuHeading: {
+    fontSize: 18,
+    padding: 5,
     fontWeight: 'bold',
     color: colours.primary,
   },
