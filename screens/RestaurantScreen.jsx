@@ -12,7 +12,6 @@ const RestaurantScreen = () => {
   } = useRoute();
 
   const navigation = useNavigation();
-  console.log(dishes);
 
   useLayoutEffect(() => {
     navigation.setOptions({
