@@ -44,7 +44,7 @@ const RestaurantScreen = () => {
               </Text>
             </View>
             <View style={styles.flexContainer}>
-              <Icon name='map-marker' size={15} color={colours.loaction} />
+              <Icon name='map-marker' size={15} color={colours.location} />
               <Text style={styles.smallText}> Nearby - {address}</Text>
             </View>
           </View>

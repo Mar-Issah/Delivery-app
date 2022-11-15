@@ -4,6 +4,6 @@ export default {
   iconBlue: '#282ff7',
   white: '#fff',
   star: 'gold',
-  loaction: '#EA4335',
+  location: '#EA4335',
   turquoise: '#AFE4DE',
 };

@@ -35,7 +35,7 @@ const Dish = ({ id, name, image, description, price }) => {
       {isPressed && (
         <View style={styles.quantityContainer}>
           <TouchableOpacity>
-            <Icon name='minus-circle' size={23} color={colours.loaction} style={styles.arrow} />
+            <Icon name='minus-circle' size={23} color={colours.location} style={styles.arrow} />
           </TouchableOpacity>
           <Text style={styles.boldText}>0</Text>
           <TouchableOpacity>

@@ -31,7 +31,7 @@ const RestaurantCard = ({ id, imgUrl, title, rating, genre, address, short_desc,
           </Text>
         </View>
         <View style={styles.ratingContainer}>
-          <Icon name='map-marker' size={15} color={colours.loaction} />
+          <Icon name='map-marker' size={15} color={colours.location} />
           <Text style={styles.ratingText}> Nearby - {address}</Text>
         </View>
       </View>
