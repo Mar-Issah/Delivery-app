@@ -6,7 +6,6 @@ import { urlFor } from '../sanity/sanity';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Dish from '../components/Dish';
 import Basket from '../components/Basket';
-import { selectRestaurant } from '../redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRestaurant } from '../redux/slices/restaurantSlice';
 
@@ -18,9 +17,6 @@ const RestaurantScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const resturant = useSelector(selectRestaurant);
-
-  consoloe.log(resturant);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,

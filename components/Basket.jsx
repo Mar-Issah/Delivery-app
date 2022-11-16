@@ -13,6 +13,9 @@ const Basket = () => {
   const navigation = useNavigation();
 
   // console.log(totalPrice);
+
+  if (items.length === 0) return null;
+
   return (
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Basket')}>
       <View style={styles.quantityContainer}>
