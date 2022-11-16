@@ -4,9 +4,26 @@ import colours from '../config/colours';
 import Currency from 'react-currency-formatter';
 import { urlFor } from '../sanity/sanity';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToBasket, removeFromBasket, selectBasketItemId } from '../redux/slices/basketSlice';
 
 const Dish = ({ id, name, image, description, price }) => {
   const [isPressed, setIsPressed] = useState(false);
+  const items = useSelector((state) => selectBasketItemId(state, id));
+  //insted of useSelector((state) => state.basket.items);
+  //useSlector fxn accepts the state this way we can pass in the state and id in the call back fxn
+  const dispatch = useDispatch();
+
+  const addItemToBasket = () => {
+    dispatch(addToBasket({ id, name, image, description, price }));
+    //dispatch this action to the store together with this payload
+  };
+
+  const removeItemFromBasket = () => {
+    if (items.length === 0) return;
+    dispatch(removeFromBasket({ id }));
+    //pass in the id as payload
+  };
   return (
     <>
       <TouchableOpacity
@@ -34,11 +51,16 @@ const Dish = ({ id, name, image, description, price }) => {
       </TouchableOpacity>
       {isPressed && (
         <View style={styles.quantityContainer}>
-          <TouchableOpacity>
-            <Icon name='minus-circle' size={23} color={colours.location} style={styles.arrow} />
+          <TouchableOpacity onPress={removeItemFromBasket} disabled={!items.length}>
+            <Icon
+              name='minus-circle'
+              size={23}
+              color={items.length === 0 ? colours.primary : colours.location}
+              style={styles.arrow}
+            />
           </TouchableOpacity>
-          <Text style={styles.boldText}>0</Text>
-          <TouchableOpacity>
+          <Text style={styles.boldText}>{items?.length}</Text>
+          <TouchableOpacity onPress={addItemToBasket}>
             <Icon name='plus-circle' size={23} color={colours.iconBlue} style={styles.arrow} />
           </TouchableOpacity>
         </View>
@@ -60,7 +82,7 @@ const styles = StyleSheet.create({
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '20%',
+    width: '40%',
     paddingVertical: 3,
     justifyContent: 'space-evenly',
   },

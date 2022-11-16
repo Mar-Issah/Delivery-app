@@ -10,10 +10,19 @@ export const basketSlice = createSlice({
   reducers: {
     //actions that allow us to modify the global store
     addToBasket: (state, action) => {
-      state.items = [...state.items, action.payload]; //action.payload is whatever that comes with the action i.e the item to be added
+      state.items = [...state.items, action.payload];
     },
     removeFromBasket: (state, action) => {
-      // state.value -= 1;
+      //i would use filer above, but find the index of the item to be removed, create a copy of the basket and and splice to remove the item by index
+      //we want to be able to retunr an message if the user clicks on the - when the basket is empty and finally return the newbakset
+      const index = state.items.findIndex((item) => item.id == action.payload.id);
+      let newBasket = [...state.items];
+      if (index >= 0) {
+        newBasket.splice(index, 1);
+      } else {
+        console.log(`You cannot remove product (id:${action.payload.id}), it is not in your basket`);
+      }
+      state.items = newBasket;
     },
   },
 });
@@ -22,8 +31,10 @@ export const basketSlice = createSlice({
 //export  the actions and allow us to use in our app
 export const { addToBasket, removeFromBasket } = basketSlice.actions;
 
-//seletor  is any function that accepts the Redux store state (or part of the state) as an argument, and returns data that is based on that state. The current data
-//basically select a particular slice in the global state/store we are selecting the basket slice (name of this slice is basket and getting the item[] state)
-export const selectedBasket = (state) => state.basket.item;
+//exposing this state as seletedBasketItems
+export const selectedBasketItems = (state) => state.basket.items;
+
+//different b/m the twoe selectors is thatthis will return an array only with the id provided
+export const selectBasketItemId = (state, id) => state.basket.items.filter((item) => item.id === id);
 
 export default basketSlice.reducer;
