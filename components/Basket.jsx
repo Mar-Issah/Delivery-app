@@ -9,17 +9,17 @@ const Basket = () => {
   const items = useSelector(selectedBasketItems);
   const totalPrice = useSelector(selectedBasketTotal);
 
-  console.log(totalPrice);
+  // console.log(totalPrice);
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.quantityContainer}>
-        <Text style={styles.text}>Basket</Text>
+        <Text style={styles.text}>{items.length}</Text>
       </View>
 
       <Text style={styles.text}>View Basket</Text>
       <Text style={styles.text}>
         {' '}
-        <Currency quantity={20} currency='USD' />
+        <Currency quantity={totalPrice} currency='USD' />
       </Text>
     </TouchableOpacity>
   );
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   quantityContainer: {
-    backgroundColor: '#75c7bd',
+    backgroundColor: colours.turquoiseDark,
     padding: 5,
     borderRadius: 9,
   },

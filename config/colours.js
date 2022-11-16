@@ -6,4 +6,5 @@ export default {
   star: 'gold',
   location: '#EA4335',
   turquoise: '#AFE4DE',
+  turquoiseDark: '#75c7bd',
 };
