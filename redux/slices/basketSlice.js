@@ -31,10 +31,4 @@ export const basketSlice = createSlice({
 //export  the actions and allow us to use in our app
 export const { addToBasket, removeFromBasket } = basketSlice.actions;
 
-//exposing this state as seletedBasketItems
-export const selectedBasketItems = (state) => state.basket.items;
-
-//different b/m the twoe selectors is thatthis will return an array only with the id provided
-export const selectBasketItemId = (state, id) => state.basket.items.filter((item) => item.id === id);
-
 export default basketSlice.reducer;

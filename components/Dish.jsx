@@ -5,7 +5,8 @@ import Currency from 'react-currency-formatter';
 import { urlFor } from '../sanity/sanity';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToBasket, removeFromBasket, selectBasketItemId } from '../redux/slices/basketSlice';
+import { addToBasket, removeFromBasket } from '../redux/slices/basketSlice';
+import { selectBasketItemId } from '../redux/selectors';
 
 const Dish = ({ id, name, image, description, price }) => {
   const [isPressed, setIsPressed] = useState(false);
@@ -55,7 +56,7 @@ const Dish = ({ id, name, image, description, price }) => {
             <Icon
               name='minus-circle'
               size={23}
-              color={items.length === 0 ? colours.primary : colours.location}
+              color={!items.length ? colours.primary : colours.location}
               style={styles.arrow}
             />
           </TouchableOpacity>
