@@ -1,17 +1,20 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { selectedBasketItems, selectedBasketTotal } from '../redux/selectors';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import colours from '../config/colours';
 import Currency from 'react-currency-formatter';
+import { useNavigation } from '@react-navigation/native';
 
 const Basket = () => {
   const items = useSelector(selectedBasketItems);
   const totalPrice = useSelector(selectedBasketTotal);
 
+  const navigation = useNavigation();
+
   // console.log(totalPrice);
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Basket')}>
       <View style={styles.quantityContainer}>
         <Text style={styles.text}>{items.length}</Text>
       </View>
