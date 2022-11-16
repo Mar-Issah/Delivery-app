@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useEffect } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
 import { urlFor } from '../sanity/sanity';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Dish from '../components/Dish';
 import Basket from '../components/Basket';
+import { selectRestaurant } from '../redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRestaurant } from '../redux/slices/restaurantSlice';
 
 const RestaurantScreen = () => {
   const {
@@ -13,12 +16,21 @@ const RestaurantScreen = () => {
   } = useRoute();
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
+  const resturant = useSelector(selectRestaurant);
+
+  consoloe.log(resturant);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  useEffect(() => {
+    dispatch(setRestaurant({ id, imgUrl, title, rating, genre, address, short_desc, dishes }));
+  }, []);
+
   return (
     <>
       <ScrollView style={{ backgroundColor: colours.offWhite }}>

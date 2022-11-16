@@ -26,6 +26,6 @@ export const restaurantSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 //export  the actions and allow us to use in our app
-export const { addToBasket, removeFromBasket } = restaurantSlice.actions;
+export const { setRestaurant } = restaurantSlice.actions;
 
 export default restaurantSlice.reducer;
