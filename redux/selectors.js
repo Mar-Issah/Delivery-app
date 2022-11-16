@@ -10,4 +10,4 @@ export const selectBasketItemId = (state, id) => state.basket.items.filter((item
 //reduce to a single value, what this does is that it takes any array initial value is 0 everytime it loops through, it keeps adding each price to the total
 export const selectedBasketTotal = (state) => state.basket.items?.reduce((total, item) => (total += item.price), 0);
 
-export const selectedRestaurant = (state) => state?.restaurant.restaurant;
+export const selectRestaurant = (state) => state?.restaurant.restaurant;
