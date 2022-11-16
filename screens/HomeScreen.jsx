@@ -1,14 +1,4 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  Platform,
-  StatusBar,
-  View,
-  Text,
-  TextInput,
-  ScrollView,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, Image, Platform, StatusBar, View, Text, TextInput, ScrollView } from 'react-native';
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import colours from '../config/colours';
@@ -75,16 +65,11 @@ const HomeScreen = () => {
         <Icon name='sliders' size={20} color={colours.iconBlue} />
       </View>
       {/* BODY/SCROLLVIEW FOR CATEGORIES */}
-      <ScrollView contentContainerStyle={{ paddingBottom: 300 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
         {/* categories */}
         <Categories />
         {featuredCategories?.map((category) => (
-          <FeaturedRow
-            id={category._id}
-            key={category._id}
-            title={category.name}
-            desc={category.short_description}
-          />
+          <FeaturedRow id={category._id} key={category._id} title={category.name} desc={category.short_description} />
         ))}
       </ScrollView>
     </SafeAreaView>
