@@ -14,7 +14,7 @@ const Delivery = () => {
           <Text w style={styles.helpText}>
             Help
           </Text>
-          <TouchableOpacity onPress={() => navigation('Home')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
             <Icon name='close' size={20} color={colours.location} />
           </TouchableOpacity>
         </View>

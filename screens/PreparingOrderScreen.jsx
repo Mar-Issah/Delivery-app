@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, { useEffect } from 'react';
 import colours from '../config/colours';
 import * as Animatable from 'react-native-animatable';
-// import * as Progress from 'react-native-progress';
+import * as Progress from 'react-native-progress';
 import { useNavigation } from '@react-navigation/native';
 
 const PreparingOrderScreen = () => {
@@ -26,9 +26,7 @@ const PreparingOrderScreen = () => {
       <Animatable.Text animation='slideInUp' iterationCount={2} style={styles.text}>
         Please wait for restaurant to accept your order!
       </Animatable.Text>
-      {/* <View>
-        <Progress.Circle size={30} indeterminate={true} color='white' />
-      </View> */}
+      <Progress.Bar size={30} indeterminate={true} color={colours.white} />
     </View>
   );
 };
@@ -48,6 +46,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 10,
+    marginBottom: 20,
     fontWeight: 'bold',
     color: colours.white,
     fontSize: 15,
