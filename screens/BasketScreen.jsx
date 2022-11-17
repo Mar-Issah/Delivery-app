@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Platform, StatusBar, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Platform, StatusBar, TouchableOpacity, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { selectRestaurant, selectedBasketItems } from '../redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,6 +35,19 @@ const BasketScreen = () => {
           <Icon name='close' size={20} color={colours.location} />
         </TouchableOpacity>
       </View>
+      <View style={styles.deliveryContainer}>
+        <View style={{ flexDirection: 'row' }}>
+          <Image
+            style={styles.logo}
+            resizeMode='contain'
+            source={{
+              uri: 'https://res.cloudinary.com/dytnpjxrd/image/upload/v1666980804/Delivery%20app/logo-removebg-preview_jfattz.png',
+            }}
+          />
+          <Text style={styles.normalText}>Deliver in 50 - 75 mins</Text>
+        </View>
+        <Text style={styles.changeText}>Change</Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -67,8 +80,29 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     textAlign: 'center',
   },
+  changeText: {
+    color: colours.turquoiseDark,
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
   boldText: {
     fontWeight: 'bold',
     color: colours.primary,
+  },
+  logo: {
+    width: 30,
+    height: 30,
+    borderColor: colours.iconBlue,
+    borderWidth: 1,
+    borderRadius: 75,
+    marginRight: 10,
+  },
+  deliveryContainer: {
+    flexDirection: 'row',
+    backgroundColor: colours.white,
+    alignItems: 'center',
+    marginTop: 13,
+    justifyContent: 'space-between',
+    padding: 8,
   },
 });
