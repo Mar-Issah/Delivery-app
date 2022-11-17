@@ -1,10 +1,23 @@
-import { StyleSheet, Text, View, SafeAreaView, Platform, StatusBar, TouchableOpacity, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Platform,
+  StatusBar,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { selectRestaurant, selectedBasketItems } from '../redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { urlFor } from '../sanity/sanity';
+import Currency from 'react-currency-formatter';
+import { removeFromBasket } from '../redux/slices/basketSlice';
 
 const BasketScreen = () => {
   const [groupedItemBasket, setGroupedItemBasket] = useState([]);
@@ -22,7 +35,7 @@ const BasketScreen = () => {
       return results;
     }, {});
     setGroupedItemBasket(groupedItems);
-  }, []);
+  }, [items]);
   // console.log(restaurant);
   return (
     <SafeAreaView style={styles.AndroidSafeArea}>
@@ -48,6 +61,35 @@ const BasketScreen = () => {
         </View>
         <Text style={styles.changeText}>Change</Text>
       </View>
+      <ScrollView>
+        {/* get the key, value pair of the grouped items using the objcet.entries we wan to be able to use each items length */}
+        {Object.entries(groupedItemBasket).map(([key, value]) => (
+          <View key={key} style={styles.orderContainer}>
+            <View>
+              <View style={styles.flexContainer}>
+                <Text style={styles.changeText}>{value.length} X</Text>
+                <Image
+                  style={styles.foodImage}
+                  resizeMode='contain'
+                  source={{
+                    uri: urlFor(value[0].image).url(),
+                  }}
+                />
+                <Text style={styles.boldText}>{value[0].name}</Text>
+              </View>
+            </View>
+            <View style={styles.flexContainer}>
+              <Text>
+                <Currency quantity={value[0].price} currency='USD' />
+              </Text>
+              {/* on press dispatch the action to remove the item from the basket/state using the key as id */}
+              <TouchableOpacity onPress={() => dispatch(removeFromBasket({ id: key }))}>
+                <Text style={styles.changeText}>Remove</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -59,6 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: colours.offWhite,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     paddingHorizontal: 15,
+    flex: 1,
   },
   headingContainer: {
     backgroundColor: colours.white,
@@ -84,6 +127,7 @@ const styles = StyleSheet.create({
     color: colours.turquoiseDark,
     fontSize: 14,
     fontWeight: 'bold',
+    marginLeft: 10,
   },
   boldText: {
     fontWeight: 'bold',
@@ -97,12 +141,33 @@ const styles = StyleSheet.create({
     borderRadius: 75,
     marginRight: 10,
   },
+  foodImage: {
+    width: 50,
+    height: 50,
+    borderColor: colours.iconBlue,
+    borderWidth: 1,
+    borderRadius: 75,
+    marginHorizontal: 10,
+  },
   deliveryContainer: {
     flexDirection: 'row',
     backgroundColor: colours.white,
     alignItems: 'center',
-    marginTop: 13,
+    marginVertical: 13,
     justifyContent: 'space-between',
     padding: 8,
+  },
+  orderContainer: {
+    flexDirection: 'row',
+    backgroundColor: colours.white,
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderColor: colours.offWhite,
+    justifyContent: 'space-between',
+    padding: 8,
+  },
+  flexContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

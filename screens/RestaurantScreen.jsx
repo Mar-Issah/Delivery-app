@@ -29,7 +29,7 @@ const RestaurantScreen = () => {
 
   return (
     <>
-      <ScrollView style={{ backgroundColor: colours.offWhite }}>
+      <ScrollView style={{ backgroundColor: colours.offWhite, paddingBottom: 300 }}>
         <View style={styles.container}>
           <Image
             style={styles.image}
