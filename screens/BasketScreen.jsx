@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { selectRestaurant, selectedBasketItems } from '../redux/selectors';
+import { selectRestaurant, selectedBasketItems, selectedBasketTotal } from '../redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -26,6 +26,8 @@ const BasketScreen = () => {
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
+
+  const totalPrice = useSelector(selectedBasketTotal);
 
   useEffect(() => {
     //memoised data,
@@ -90,6 +92,25 @@ const BasketScreen = () => {
           </View>
         ))}
       </ScrollView>
+      {/* Subtotal view */}
+      <View style={styles.totalContainer}>
+        <Text style={styles.normalText}>Subtotal</Text>
+        <Text style={styles.normalText}>
+          <Currency quantity={totalPrice} currency='USD' />
+        </Text>
+      </View>
+      <View style={styles.totalContainer}>
+        <Text style={styles.normalText}>Delivery fee</Text>
+        <Text style={styles.normalText}>
+          <Currency quantity={totalPrice} currency='USD' />
+        </Text>
+      </View>
+      <View style={styles.totalContainer}>
+        <Text style={styles.normalText}>Order total</Text>
+        <Text style={styles.normalText}>
+          <Currency quantity={totalPrice} currency='USD' />
+        </Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -169,5 +190,12 @@ const styles = StyleSheet.create({
   flexContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  totalContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: colours.white,
+    padding: 5,
   },
 });
