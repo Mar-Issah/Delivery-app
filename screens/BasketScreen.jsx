@@ -102,15 +102,18 @@ const BasketScreen = () => {
       <View style={styles.totalContainer}>
         <Text style={styles.normalText}>Delivery fee</Text>
         <Text style={styles.normalText}>
-          <Currency quantity={totalPrice} currency='USD' />
+          <Currency quantity={10} currency='USD' />
         </Text>
       </View>
       <View style={styles.totalContainer}>
-        <Text style={styles.normalText}>Order total</Text>
-        <Text style={styles.normalText}>
-          <Currency quantity={totalPrice} currency='USD' />
+        <Text style={styles.boldText}>Order total</Text>
+        <Text style={styles.boldText}>
+          <Currency quantity={totalPrice + 10} currency='USD' />
         </Text>
       </View>
+      <TouchableOpacity style={styles.placeOrder} onPress={() => navigation.navigate('PreparingOrder')}>
+        <Text style={styles.placeOrderText}>Place Order</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -197,5 +200,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: colours.white,
     padding: 5,
+  },
+  placeOrder: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '80%',
+    backgroundColor: colours.turquoise,
+    borderRadius: 5,
+    elevation: 20,
+    alignSelf: 'center',
+    alignItems: 'center',
+    padding: 15,
+  },
+  placeOrderText: {
+    fontWeight: 'bold',
+    color: colours.white,
+    fontSize: 15,
   },
 });
