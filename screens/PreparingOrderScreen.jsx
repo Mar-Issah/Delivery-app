@@ -26,7 +26,7 @@ const PreparingOrderScreen = () => {
       <Animatable.Text animation='slideInUp' iterationCount={2} style={styles.text}>
         Please wait for restaurant to accept your order!
       </Animatable.Text>
-      <Progress.Bar size={30} indeterminate={true} color={colours.white} />
+      {/* <Progress.Bar size={30} indeterminate={true} color={colours.white} /> */}
     </View>
   );
 };

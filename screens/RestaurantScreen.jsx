@@ -6,7 +6,7 @@ import { urlFor } from '../sanity/sanity';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Dish from '../components/Dish';
 import Basket from '../components/Basket';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setRestaurant } from '../redux/slices/restaurantSlice';
 
 const RestaurantScreen = () => {
@@ -24,7 +24,7 @@ const RestaurantScreen = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(setRestaurant({ id, imgUrl, title, rating, genre, address, short_desc, dishes }));
+    dispatch(setRestaurant({ id, imgUrl, title, rating, genre, address, short_desc, dishes, long, lat }));
   }, []);
 
   return (

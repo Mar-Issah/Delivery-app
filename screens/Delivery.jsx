@@ -4,9 +4,15 @@ import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import * as Progress from 'react-native-progress';
+import { useSelector } from 'react-redux';
+import { selectRestaurant } from '../redux/selectors';
+import MapView from 'react-native-maps';
 
 const Delivery = () => {
   const navigation = useNavigation();
+
+  const restaurant = useSelector(selectRestaurant);
+  console.log(restaurant);
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -39,9 +45,23 @@ const Delivery = () => {
             indeterminate={true}
             color={colours.turquoiseDark}
           />
-          <Text style={styles.normalText}>Your order at {} is being delivered to you!</Text>
+          <Text style={styles.normalText}>
+            Your order at
+            <Text style={styles.boldText}>{restaurant.title}</Text>
+            is being delivered to you!
+          </Text>
         </View>
       </SafeAreaView>
+      {/* we are using expo map view component RN doesnt have one, initaila cordinates are the lat and long we pass in as props*/}
+      <MapView
+        initialRegion={{
+          longitude: restaurant.long,
+          latitude: restaurant.lat,
+          // delta is zoom scale
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
+        }}
+      />
     </View>
   );
 };
@@ -91,5 +111,9 @@ const styles = StyleSheet.create({
   },
   progress: {
     marginVertical: 8,
+  },
+  boldText: {
+    fontWeight: 'bold',
+    color: colours.primary,
   },
 });
