@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Progress from 'react-native-progress';
 import { useSelector } from 'react-redux';
 import { selectRestaurant } from '../redux/selectors';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 const Delivery = () => {
   const [mapRegion, setmapRegion] = useState({
@@ -62,7 +62,15 @@ const Delivery = () => {
       {/* we are using expo map view component RN doesnt have one, initaila cordinates are the lat and long we pass in as props*/}
       {/* use the restaurant long and lat */}
       <View style={styles.mapContainer}>
-        <MapView region={mapRegion} style={styles.map}></MapView>
+        <MapView region={mapRegion} style={styles.map}>
+          <Marker
+            coordinate={mapRegion}
+            title={restaurant.title}
+            description={restaurant.short_description}
+            identifier='origin'
+            // pinColor={'blue'}
+          />
+        </MapView>
       </View>
     </View>
   );
