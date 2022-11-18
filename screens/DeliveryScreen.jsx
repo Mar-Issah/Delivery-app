@@ -72,6 +72,22 @@ const Delivery = () => {
           />
         </MapView>
       </View>
+      <SafeAreaView style={styles.riderContainer}>
+        <View style={{ flexDirection: 'row' }}>
+          <Image
+            style={styles.logo}
+            resizeMode='contain'
+            source={{
+              uri: 'https://res.cloudinary.com/dytnpjxrd/image/upload/v1666980804/Delivery%20app/logo-removebg-preview_jfattz.png',
+            }}
+          />
+          <View style={{ marginLeft: 10 }}>
+            <Text style={styles.boldText}>Marsiya Issah</Text>
+            <Text style={styles.normalText}>Your Rider</Text>
+          </View>
+        </View>
+        <Text style={styles.callText}>Call</Text>
+      </SafeAreaView>
     </View>
   );
 };
@@ -137,5 +153,18 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+  },
+  riderContainer: {
+    backgroundColor: colours.white,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 8,
+    alignItems: 'center',
+  },
+  callText: {
+    color: colours.turquoiseDark,
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
