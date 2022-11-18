@@ -1,5 +1,5 @@
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import React from 'react';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, Dimensions } from 'react-native';
+import React, { useState } from 'react';
 import colours from '../config/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
@@ -9,10 +9,17 @@ import { selectRestaurant } from '../redux/selectors';
 import MapView from 'react-native-maps';
 
 const Delivery = () => {
+  const [mapRegion, setmapRegion] = useState({
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
+
   const navigation = useNavigation();
 
   const restaurant = useSelector(selectRestaurant);
-  console.log(restaurant);
+  // console.log(restaurant);
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -53,15 +60,10 @@ const Delivery = () => {
         </View>
       </SafeAreaView>
       {/* we are using expo map view component RN doesnt have one, initaila cordinates are the lat and long we pass in as props*/}
-      <MapView
-        initialRegion={{
-          longitude: restaurant.long,
-          latitude: restaurant.lat,
-          // delta is zoom scale
-          latitudeDelta: 0.05,
-          longitudeDelta: 0.05,
-        }}
-      />
+      {/* use the restaurant long and lat */}
+      <View style={styles.mapContainer}>
+        <MapView region={mapRegion} style={styles.map}></MapView>
+      </View>
     </View>
   );
 };
@@ -99,6 +101,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 15,
     marginTop: 10,
+    elevation: 20,
+    zIndex: 10,
   },
   minutesText: {
     fontWeight: 'bold',
@@ -115,5 +119,15 @@ const styles = StyleSheet.create({
   boldText: {
     fontWeight: 'bold',
     color: colours.primary,
+  },
+  mapContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
 });
